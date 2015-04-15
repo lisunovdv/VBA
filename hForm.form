@@ -1,0 +1,156 @@
+
+Private Sub B_CellChoose_Click()
+hForm.Height = 50
+On Error GoTo L
+x = TB_mySelection.Text
+TB_mySelection = Application.InputBox("Âûáåðåòå ÿ÷åéêè: ", "Âûáîð ÿ÷ååê", TB_mySelection, , , , , 8).Address
+ hForm.Height = 504
+ Exit Sub
+ 
+L: TB_mySelection.Text = x
+hForm.Height = 504
+End Sub
+
+Private Sub CB_Copy2CP_Click()
+If CB_Copy2CP.Value = True Then
+   CB_Copy2CPSc.Enabled = True
+Else
+    CB_Copy2CPSc.Enabled = False
+End If
+End Sub
+Private Sub CB_Save2Cell_Click()
+If CB_Save2Cell.Value = True Then
+    TB_Save2Cell.Enabled = True
+    CB_Save2CellSc.Enabled = True
+Else
+    TB_Save2Cell.Enabled = False
+    CB_Save2CellSc.Enabled = False
+End If
+End Sub
+
+Private Sub CB_Save2File_Click()
+If CB_Save2File.Value = True Then
+    TB_Save2File.Enabled = True
+    CB_Save2FileSc.Enabled = True
+Else
+    TB_Save2File.Enabled = False
+    CB_Save2FileSc.Enabled = False
+End If
+End Sub
+
+Private Sub CB_TableClass_Click()
+If CB_TableClass.Value = True Then
+    TB_TableClass.Enabled = True
+Else
+    TB_TableClass.Enabled = False
+End If
+End Sub
+Private Sub CB_TableId_Click()
+If CB_TableId.Value = True Then
+    TB_TableId.Enabled = True
+Else
+    TB_TableId.Enabled = False
+End If
+End Sub
+
+Private Sub CB_TRClass_Click()
+If CB_TRClass.Value = True Then
+    TB_TRClass.Enabled = True
+Else
+    TB_TRClass.Enabled = False
+End If
+End Sub
+
+
+
+Private Sub CB_TRId_Click()
+If CB_TRId.Value = True Then
+    TB_TRId.Enabled = True
+Else
+    TB_TRId.Enabled = False
+End If
+End Sub
+
+Private Sub CB_TDClass_Click()
+If CB_TDClass.Value = True Then
+    TB_TDClass.Enabled = True
+Else
+    TB_TDClass.Enabled = False
+End If
+End Sub
+Private Sub CB_TDId_Click()
+If CB_TDId.Value = True Then
+    TB_TDId.Enabled = True
+Else
+    TB_TDId.Enabled = False
+End If
+End Sub
+
+
+
+Private Sub CommandButton1_Click()
+
+End Sub
+
+Private Sub GoButton_Click()
+
+Call NewHTML5(TB_mySelection, _
+FrameTable.CB_TableClass, FrameTable.TB_TableClass, FrameTable.CB_TableId, FrameTable.TB_TableId, _
+FrameTR.CB_TDrepTH, FrameTR.CB_TROdd_Even, _
+FrameTR.CB_TRClass, FrameTR.TB_TRClass, FrameTR.CB_TRId, FrameTR.TB_TRId, _
+FrameTD.CB_TDClass, FrameTD.TB_TDClass, FrameTD.CB_TDId, FrameTD.TB_TDId, _
+FrameSave.CB_Save2File, FrameSave.TB_Save2File, FrameSave.CB_Save2FileSc, _
+FrameSave.CB_Save2Cell, FrameSave.TB_Save2Cell, FrameSave.CB_Save2CellSc, _
+FrameSave.CB_Copy2CP, FrameSave.CB_Copy2CPSc)
+
+End Sub
+
+Private Sub UserForm_Initialize()
+Selection.Areas(1).Select ' íà ñëó÷àé âûäåëåíèÿ íåñâÿçàííûõ äèàïàçîíîâ
+hForm.TB_mySelection.Text = Selection.Address
+No = "íåò"
+
+'' -------------    Òàáëèöà -----
+'' Êëàññ
+'CB_TableClass.Value = True
+'TB_TableClass.Enabled = True
+'TB_TableClass.Text = "t-table main"
+'' Id
+'CB_TableId.Value = False
+'TB_TableId.Enabled = False
+'TB_TableId.Text = No
+'
+'' -------------    Ñòðîêè -----
+'CB_TDrepTH.Value = True
+'CB_TROdd_Even.Value = True
+'' Êëàññ
+'CB_TRClass.Value = True
+'TB_TRClass.Enabled = True
+'TB_TRClass.Text = "t-row"
+'
+'' Id
+'CB_TRId.Value = True
+'TB_TRId.Enabled = True
+'TB_TRId.Text = "t-row-id-%"
+'
+'' -------------    ß÷åéêè -----
+'' Êëàññ
+'CB_TDClass.Value = True
+'TB_TDClass.Enabled = True
+'TB_TDClass.Text = "t-r-% t-col-$"
+'
+'' Id
+'CB_TDId.Value = True
+'TB_TDId.Enabled = True
+'TB_TDId.Text = "t-cell-id-%$"
+'
+'
+'' -------------    Ãåíåðàòîð CSS -----
+'
+'' -------------    Ñîõðàíåíèå è âûâîä: -----
+'CB_Save2File.Value = True
+TB_Save2File.Text = "F:\" & ActiveSheet.Name & ".html"
+'CB_Save2Cell.Value = False
+'CB_Copy2CP.Value = False
+
+End Sub
